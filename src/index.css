@@ -1,0 +1,188 @@
+:root {
+  --bg-primary: #0A0A0A;
+  --bg-secondary: #121212;
+  --text-primary: #EFE8DD;
+  --text-secondary: rgba(239, 232, 221, 0.7);
+  --accent-cyan: #11B5D9;
+  --accent-cyan-hover: #0e96b5;
+  --accent-cyan-glow: rgba(17, 181, 217, 0.2);
+  --border-light: rgba(239, 232, 221, 0.1);
+  --border-cyan: rgba(17, 181, 217, 0.3);
+  
+  --font-heading: 'Sora', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Typography Utilities */
+.h-xl { font-size: clamp(3rem, 6vw, 5rem); letter-spacing: -0.03em; }
+.h-l { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.02em; }
+.h-m { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.01em; }
+.h-s { font-size: clamp(1.5rem, 3vw, 2rem); }
+.text-body-l { font-size: 1.25rem; color: var(--text-secondary); }
+.text-body-m { font-size: 1.125rem; }
+.text-body-s { font-size: 1rem; color: var(--text-secondary); }
+.text-cyan { color: var(--accent-cyan); }
+.text-gradient {
+  background: linear-gradient(90deg, #fff, var(--text-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.section-padding { padding: 8rem 0; }
+.section-padding-sm { padding: 4rem 0; }
+
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-col { display: flex; flex-direction: column; }
+.grid-cols-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+.grid-cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.grid-cols-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+
+@media (max-width: 768px) {
+  .grid-cols-2, .grid-cols-3, .grid-cols-4 { grid-template-columns: 1fr; }
+  .section-padding { padding: 5rem 0; }
+  .container { padding: 0 1.5rem; }
+}
+
+/* UI Elements */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  outline: none;
+}
+
+.btn-primary {
+  background-color: var(--accent-cyan);
+  color: var(--bg-primary);
+  box-shadow: 0 0 20px var(--accent-cyan-glow);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-cyan-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 25px rgba(17, 181, 217, 0.4);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+}
+
+.btn-outline:hover {
+  border-color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.glass-card {
+  background: rgba(18, 18, 18, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: var(--border-cyan);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Animations */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+
+/* Grid Background */
+.bg-grid {
+  position: relative;
+}
+.bg-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: -1;
+  pointer-events: none;
+}
+.bg-grid::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 0%, rgba(10,10,10,0) 0%, var(--bg-primary) 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.sticky-cta {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+}
